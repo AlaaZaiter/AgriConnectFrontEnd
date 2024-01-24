@@ -7,14 +7,17 @@ module.exports = defineConfig({
       'agri-connect-platform-sgr1.onrender.com',
     ],
   },
+  publicPath: process.env.NODE_ENV === 'production' ? '/agriconnect/' : '/',
+
   pages: {
     index: {
       entry: 'src/main.js',
       template: 'public/index.html',
-      filename: process.env.NODE_ENV === 'production' ? 'build/public/index.html' : 'index.html',
+      filename: process.env.NODE_ENV === 'production' ? 'build/path/index.html' : 'index.html',
       chunks: ['chunk-vendors', 'chunk-common', 'index']
     },
   },
+
   configureWebpack: {
     plugins: [
       {
