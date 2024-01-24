@@ -1,34 +1,35 @@
-// vue.config.js
-
 const { defineConfig } = require('@vue/cli-service');
 
 module.exports = defineConfig({
   transpileDependencies: true,
+  publicPath: process.env.NODE_ENV === 'production' ? '/agriconnect/' : '/',
   devServer: {
-    allowedHosts: [
-      'agri-connect-platform-sgr1.onrender.com',
-    ],
+    allowedHosts: ['agri-connect-platform-sgr1.onrender.com'],
   },
-  
-  chainWebpack: config => {
-    config.plugin('html').tap(args => {
-      args[0].title = 'agriconnect';
-      return args;
-    });
+  configureWebpack: {
+    plugins: [
+      {
+        apply: (compiler) => {
+          compiler.hooks.compilation.tap('CustomHtmlPlugin', (compilation) => {
+            if (compilation.hooks.htmlWebpackPluginBeforeHtmlProcessing) {
+              compilation.hooks.htmlWebpackPluginBeforeHtmlProcessing.tapAsync(
+                'CustomHtmlPlugin',
+                (data, callback) => {
+                  // You can customize the title here
+                  data.htmlWebpackPlugin.options.title = 'agriconnect';
 
-    config.plugin('CustomHtmlPlugin').use({
-      apply: (compiler) => {
-        compiler.hooks.compilation.tap('CustomHtmlPlugin', (compilation) => {
-          if (compilation.hooks.htmlWebpackPluginBeforeHtmlProcessing) {
-            compilation.hooks.htmlWebpackPluginBeforeHtmlProcessing.tapAsync('CustomHtmlPlugin', (data, callback) => {
-              // Exclude certain chunks from the HTML file
-              data.assets.js = data.assets.js.filter((path) => !path.includes('main.js'));
+                  // Exclude certain chunks from the HTML file
+                  data.assets.js = data.assets.js.filter(
+                    (path) => !path.includes('main.js')
+                  );
 
-              callback(null, data);
-            });
-          }
-        });
+                  callback(null, data);
+                }
+              );
+            }
+          });
+        },
       },
-    });
+    ],
   },
 });
