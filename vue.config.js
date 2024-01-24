@@ -6,13 +6,12 @@ module.exports = defineConfig({
   transpileDependencies: true,
   devServer: {
     allowedHosts: [
-      'https://agriconnect-11.onrender.com',
+      'agri-connect-platform-sgr1.onrender.com',
     ],
-    
   },
-  publicPath: process.env.NODE_ENV === 'production' ? '/AgriConnectFrontEnd' : '/',
-
+  
   configureWebpack: {
+    publicPath: process.env.NODE_ENV === 'production' ? '/agriconnect/' : '/',
     plugins: [
       {
         apply: (compiler) => {
