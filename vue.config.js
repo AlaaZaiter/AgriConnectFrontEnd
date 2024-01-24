@@ -1,5 +1,5 @@
 module.exports = {
-  outputDir: 'dist', // Adjust the path accordingly
+  outputDir: 'dist',
   configureWebpack: {
     entry: './src/main.js',
   },
