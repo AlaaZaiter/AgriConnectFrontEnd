@@ -1,8 +1,6 @@
-const { defineConfig } = require('@vue/cli-service');
-
-module.exports = defineConfig({
+module.exports = {
+  outputDir: 'dist', // Adjust the path accordingly
   configureWebpack: {
     entry: './src/main.js',
-    outputDir: 'dist', // Adjust the path accordingly
   },
-});
+};
