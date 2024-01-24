@@ -1,13 +1,11 @@
 const { defineConfig } = require('@vue/cli-service');
 
 module.exports = defineConfig({
-  transpileDependencies: true,
+  transpileDependencies: ['vue'], // Example: Add specific dependencies to transpile
   devServer: {
-    
+    // Configuration for the development server
+    // ...
   },
-
- 
-
   configureWebpack: {
     plugins: [
       {
@@ -28,7 +26,7 @@ module.exports = defineConfig({
         },
       },
     ],
-    entry: './src/main.js', // Adjust the path accordingly
-
+    entry: './src/main.js',
+    outputDir: 'dist', // Adjust the path accordingly
   },
 });
