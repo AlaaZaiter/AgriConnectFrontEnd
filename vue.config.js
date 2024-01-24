@@ -6,7 +6,7 @@ module.exports = defineConfig({
   transpileDependencies: true,
   devServer: {
     allowedHosts: [
-      'onrender.com',
+      'agri-connect-platform-sgr1.onrender.com',
     ],
     
   },
