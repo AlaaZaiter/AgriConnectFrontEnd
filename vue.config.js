@@ -2,7 +2,7 @@ const { defineConfig } = require('@vue/cli-service');
 
 module.exports = defineConfig({
   transpileDependencies: true,
-  publicPath: process.env.NODE_ENV === 'production' ? '/agriconnect/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',
   devServer: {
     allowedHosts: ['agri-connect-platform-sgr1.onrender.com'],
   },
