@@ -9,6 +9,8 @@ module.exports = defineConfig({
       'agri-connect-platform-sgr1.onrender.com',
     ],
   },
+  publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',
+
   configureWebpack: {
     plugins: [
       {
